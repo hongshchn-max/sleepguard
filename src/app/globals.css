@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --color-midnight: #0f0e17;
+  --color-midnight-light: #1a1932;
+  --color-midnight-lighter: #252447;
+  --color-luna-purple: #7c5cfc;
+  --color-luna-purple-light: #9b82fc;
+  --color-luna-blue: #5c8cfc;
+  --color-luna-pink: #fc5c8c;
+  --color-luna-gold: #fcd34d;
+  --color-luna-green: #34d399;
+  --color-sleep-gradient-start: #0f0e17;
+  --color-sleep-gradient-end: #1e1b4b;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, var(--color-sleep-gradient-start), var(--color-sleep-gradient-end));
+  min-height: 100vh;
+}
