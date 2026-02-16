@@ -59,11 +59,21 @@ export function LandingContent() {
         </blockquote>
       </div>
 
-      <div className="mx-auto mt-24 max-w-lg px-4 pb-20 text-center">
+      <div className="mx-auto mt-24 max-w-lg px-4 pb-12 text-center">
         <Link href="/signup" className="inline-block rounded-xl bg-luna-purple px-8 py-4 text-lg font-bold text-white transition-all hover:bg-luna-purple-light hover:scale-105">
           {t('cta')}
         </Link>
       </div>
+
+      <footer className="border-t border-white/10 py-8">
+        <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center gap-x-6 gap-y-2 px-4 text-sm text-gray-500">
+          <Link href="/legal/privacy" className="hover:text-gray-300">Privacy Policy</Link>
+          <Link href="/legal/terms" className="hover:text-gray-300">Terms of Service</Link>
+          <Link href="/legal/refund" className="hover:text-gray-300">Refund Policy</Link>
+          <Link href="/legal/tokushoho" className="hover:text-gray-300">特定商取引法</Link>
+          <span>&copy; 2026 SleepGuard</span>
+        </div>
+      </footer>
     </div>
   );
 }
