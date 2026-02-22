@@ -1,8 +1,7 @@
-# SleepGuard - AI睡眠コーチPWAアプリ
+# Dormiveglia - AI睡眠コーチPWAアプリ（Dreamcore美学）
 
 ## プロジェクト概要
-深夜スマホ使用をAIコーチ「Luna」が止めてくれる睡眠改善PWAアプリ。
-4言語対応（EN/JA/ZH/KO）、買い切りプレミアム($6.99)。
+「覚醒と夢のあわい」をテーマにしたAI睡眠コーチPWAアプリ。夢の案内人「Luna」が深夜スマホ使用を止めてくれる。TikTokのdreamcore美学を全面に押し出したデザイン。4言語対応（EN/JA/ZH/KO）、買い切りプレミアム($6.99)。Chapter 1ストーリーシステム「Luna's Secret」搭載。
 
 ## 技術スタック
 - **フレームワーク**: Next.js 16 App Router + TypeScript

@@ -1,11 +1,11 @@
 {
-  "name": "SleepGuard - AI Sleep Coach",
-  "short_name": "SleepGuard",
-  "description": "Your AI-powered sleep coach that helps you put down your phone and sleep better.",
+  "name": "Dormiveglia — The Space Between",
+  "short_name": "Dormiveglia",
+  "description": "The threshold between waking and dreaming. Luna guides you through the liminal hours.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0f0e17",
-  "theme_color": "#0f0e17",
+  "background_color": "#0a0a12",
+  "theme_color": "#0a0a12",
   "orientation": "portrait",
   "icons": [
     {

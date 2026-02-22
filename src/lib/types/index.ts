@@ -48,6 +48,7 @@ export const ACHIEVEMENT_DEFINITIONS = [
   { key: 'earlyBird', isPremium: true, condition: 'early_5' },
   { key: 'chatWithLuna', isPremium: false, condition: 'chats_10' },
   { key: 'perfectWeek', isPremium: true, condition: 'perfect_week' },
+  { key: 'somniumSigil', isPremium: false, condition: 'story_ch1' },
 ] as const;
 
 export const FREE_MESSAGES_PER_NIGHT = 3;
@@ -55,3 +56,36 @@ export const FREE_MESSAGES_PER_NIGHT = 3;
 export const COACH_PERSONALITIES = ['gentle', 'strict', 'humor', 'science'] as const;
 export const FREE_PERSONALITIES: import('./database').CoachPersonality[] = ['gentle', 'strict'];
 export const PREMIUM_PERSONALITIES: import('./database').CoachPersonality[] = ['humor', 'science'];
+
+// Story System Types
+export type StoryPhase = 0 | 1 | 2 | 3 | 4 | 5;
+
+export interface StoryProgress {
+  id: string;
+  userId: string;
+  chapter: number;
+  phase: StoryPhase;
+  screenOffAccumulated: number;
+  phaseState: Record<string, unknown>;
+  phaseAdvancedAt: string | null;
+  chapterCompletedAt: string | null;
+}
+
+export interface ScreenOffSession {
+  id: string;
+  userId: string;
+  sessionDate: string;
+  startedAt: string;
+  endedAt: string | null;
+  durationMinutes: number | null;
+  isSleepWindow: boolean;
+}
+
+export interface StoryEvent {
+  id: string;
+  userId: string;
+  chapter: number;
+  fromPhase: number;
+  toPhase: number;
+  triggerReason: string;
+}

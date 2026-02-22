@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sleepguard-v1';
+const CACHE_NAME = 'dormiveglia-v1';
 const STATIC_ASSETS = [
   '/',
   '/manifest.json',
@@ -44,10 +44,10 @@ self.addEventListener('push', (event) => {
 
   const data = event.data.json();
   event.waitUntil(
-    self.registration.showNotification(data.title || 'SleepGuard', {
+    self.registration.showNotification(data.title || 'Dormiveglia', {
       body: data.body,
-      icon: '/icons/icon-192.png',
-      badge: '/icons/icon-192.png',
+      icon: '/icons/icon-192.svg',
+      badge: '/icons/icon-192.svg',
       vibrate: [200, 100, 200],
       data: { url: '/dashboard' },
     })

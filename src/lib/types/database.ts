@@ -177,6 +177,105 @@ export interface Database {
           created_at?: string;
         };
       };
+      story_progress: {
+        Row: {
+          id: string;
+          user_id: string;
+          chapter: number;
+          phase: number;
+          screen_off_accumulated: number;
+          phase_state: Json;
+          phase_advanced_at: string | null;
+          chapter_completed_at: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          chapter?: number;
+          phase?: number;
+          screen_off_accumulated?: number;
+          phase_state?: Json;
+          phase_advanced_at?: string | null;
+          chapter_completed_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          chapter?: number;
+          phase?: number;
+          screen_off_accumulated?: number;
+          phase_state?: Json;
+          phase_advanced_at?: string | null;
+          chapter_completed_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+      };
+      screen_off_sessions: {
+        Row: {
+          id: string;
+          user_id: string;
+          session_date: string;
+          started_at: string;
+          ended_at: string | null;
+          duration_minutes: number | null;
+          is_sleep_window: boolean;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          session_date: string;
+          started_at: string;
+          ended_at?: string | null;
+          duration_minutes?: number | null;
+          is_sleep_window?: boolean;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          session_date?: string;
+          started_at?: string;
+          ended_at?: string | null;
+          duration_minutes?: number | null;
+          is_sleep_window?: boolean;
+          created_at?: string;
+        };
+      };
+      story_events: {
+        Row: {
+          id: string;
+          user_id: string;
+          chapter: number;
+          from_phase: number;
+          to_phase: number;
+          trigger_reason: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          chapter: number;
+          from_phase: number;
+          to_phase: number;
+          trigger_reason: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          chapter?: number;
+          from_phase?: number;
+          to_phase?: number;
+          trigger_reason?: string;
+          created_at?: string;
+        };
+      };
     };
   };
 }

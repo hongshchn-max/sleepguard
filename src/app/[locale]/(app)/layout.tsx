@@ -1,5 +1,7 @@
 import { setRequestLocale } from 'next-intl/server';
 import { BottomNav } from '@/components/bottom-nav';
+import { StoryProvider } from '@/components/story/story-provider';
+import { ScreenOffTracker } from '@/components/story/screen-off-tracker';
 
 export default async function AppLayout({
   children,
@@ -12,9 +14,12 @@ export default async function AppLayout({
   setRequestLocale(locale);
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <main className="flex-1 pb-20">{children}</main>
-      <BottomNav />
-    </div>
+    <StoryProvider>
+      <div className="flex min-h-screen flex-col">
+        <main className="flex-1 pb-20">{children}</main>
+        <BottomNav />
+      </div>
+      <ScreenOffTracker />
+    </StoryProvider>
   );
 }

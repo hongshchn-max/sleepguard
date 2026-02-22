@@ -4,7 +4,7 @@ test.describe('Auth Flow', () => {
   test.describe('Landing Page', () => {
     test('displays hero content and CTA', async ({ page }) => {
       await page.goto('/en');
-      await expect(page.locator('h1')).toContainText('Stop Late-Night Scrolling');
+      await expect(page.locator('h1')).toContainText('The Space Between Waking and Dreaming');
       await expect(page.locator('a[href*="/signup"]').first()).toBeVisible();
     });
 
@@ -19,16 +19,16 @@ test.describe('Auth Flow', () => {
   test.describe('Login Page', () => {
     test('renders login form with all fields', async ({ page }) => {
       await page.goto('/en/login');
-      await expect(page.locator('h1')).toContainText('SleepGuard');
+      await expect(page.locator('h1')).toContainText('Dormiveglia');
       await expect(page.locator('input[type="email"]')).toBeVisible();
       await expect(page.locator('input[type="password"]')).toBeVisible();
-      await expect(page.locator('button[type="submit"]')).toContainText('Log In');
+      await expect(page.locator('button[type="submit"]')).toContainText('Return to the threshold');
     });
 
     test('shows link to signup page', async ({ page }) => {
       await page.goto('/en/login');
       const signupLink = page.locator('a[href*="/signup"]');
-      await expect(signupLink).toContainText('Sign Up');
+      await expect(signupLink).toContainText('Cross for the first time');
       await signupLink.click();
       await page.waitForURL('**/signup');
       await expect(page).toHaveURL(/\/en\/signup/);
@@ -39,7 +39,7 @@ test.describe('Auth Flow', () => {
       await page.locator('input[type="email"]').fill('invalid@test.example.com');
       await page.locator('input[type="password"]').fill('wrongpassword123');
       await page.locator('button[type="submit"]').click();
-      await expect(page.locator('.bg-red-500\\/10')).toBeVisible({ timeout: 10000 });
+      await expect(page.locator('.bg-somnia-rose\\/10')).toBeVisible({ timeout: 10000 });
     });
 
     test('shows loading state on submit', async ({ page }) => {
@@ -54,17 +54,17 @@ test.describe('Auth Flow', () => {
   test.describe('Signup Page', () => {
     test('renders signup form with all fields', async ({ page }) => {
       await page.goto('/en/signup');
-      await expect(page.locator('h1')).toContainText('SleepGuard');
+      await expect(page.locator('h1')).toContainText('Dormiveglia');
       await expect(page.locator('input[type="email"]')).toBeVisible();
       const passwordFields = page.locator('input[type="password"]');
       await expect(passwordFields).toHaveCount(2);
-      await expect(page.locator('button[type="submit"]')).toContainText('Sign Up');
+      await expect(page.locator('button[type="submit"]')).toContainText('Cross for the first time');
     });
 
     test('shows link to login page', async ({ page }) => {
       await page.goto('/en/signup');
       const loginLink = page.locator('a[href*="/login"]');
-      await expect(loginLink).toContainText('Log In');
+      await expect(loginLink).toContainText('Return to the threshold');
       await loginLink.click();
       await page.waitForURL('**/login');
       await expect(page).toHaveURL(/\/en\/login/);
@@ -77,7 +77,7 @@ test.describe('Auth Flow', () => {
       await passwordFields.nth(0).fill('password123');
       await passwordFields.nth(1).fill('differentpassword');
       await page.locator('button[type="submit"]').click();
-      await expect(page.locator('.bg-red-500\\/10')).toContainText('Passwords do not match');
+      await expect(page.locator('.bg-somnia-rose\\/10')).toContainText('Passwords do not match');
     });
 
     test('enforces minimum password length via HTML validation', async ({ page }) => {
@@ -90,8 +90,8 @@ test.describe('Auth Flow', () => {
   test.describe('Onboarding Page', () => {
     test('renders welcome step with progress dots', async ({ page }) => {
       await page.goto('/en/onboarding');
-      await expect(page.locator('text=Welcome to SleepGuard')).toBeVisible();
-      await expect(page.locator('text=Let\'s Go!')).toBeVisible();
+      await expect(page.locator('text=Welcome to Dormiveglia')).toBeVisible();
+      await expect(page.locator('text=Cross the Threshold')).toBeVisible();
       // 3 progress dots
       const dots = page.locator('.rounded-full.h-2.w-2');
       await expect(dots).toHaveCount(3);
@@ -101,43 +101,43 @@ test.describe('Auth Flow', () => {
       await page.goto('/en/onboarding');
 
       // Step 0: Welcome
-      await expect(page.locator('text=Welcome to SleepGuard')).toBeVisible();
-      await page.locator('text=Let\'s Go!').click();
+      await expect(page.locator('text=Welcome to Dormiveglia')).toBeVisible();
+      await page.locator('text=Cross the Threshold').click();
 
       // Step 1: Time selection
-      await expect(page.locator('text=What time do you want to go to bed?')).toBeVisible();
-      await expect(page.locator('text=What time do you want to wake up?')).toBeVisible();
+      await expect(page.locator('text=When does the threshold call you?')).toBeVisible();
+      await expect(page.locator('text=When do you wish to resurface?')).toBeVisible();
       const timeInputs = page.locator('input[type="time"]');
       await expect(timeInputs).toHaveCount(2);
       await expect(timeInputs.first()).toHaveValue('23:00');
       await expect(timeInputs.last()).toHaveValue('07:00');
 
       // Navigate to step 2
-      await page.locator('text=Next').click();
+      await page.locator('text=Onward').click();
 
       // Step 2: Personality selection
-      await expect(page.locator('text=Choose your coach personality')).toBeVisible();
-      await expect(page.locator('text=Gentle')).toBeVisible();
-      await expect(page.locator('text=Strict')).toBeVisible();
-      await expect(page.locator('text=Humorous')).toBeVisible();
-      await expect(page.locator('text=Scientific')).toBeVisible();
+      await expect(page.locator('text=Choose your guide\'s nature')).toBeVisible();
+      await expect(page.locator('text=The Gentle Guide')).toBeVisible();
+      await expect(page.locator('text=The Warden')).toBeVisible();
+      await expect(page.locator('text=The Trickster')).toBeVisible();
+      await expect(page.locator('text=The Oracle')).toBeVisible();
     });
 
     test('shows premium badge on humor and science personalities', async ({ page }) => {
       await page.goto('/en/onboarding');
-      await page.locator('text=Let\'s Go!').click();
-      await page.locator('text=Next').click();
+      await page.locator('text=Cross the Threshold').click();
+      await page.locator('text=Onward').click();
 
-      const premiumBadges = page.locator('text=Premium only');
+      const premiumBadges = page.locator('text=Lucid only');
       await expect(premiumBadges).toHaveCount(2);
     });
 
     test('can go back from step 1 to step 0', async ({ page }) => {
       await page.goto('/en/onboarding');
-      await page.locator('text=Let\'s Go!').click();
-      await expect(page.locator('text=What time do you want to go to bed?')).toBeVisible();
-      await page.locator('text=Back').click();
-      await expect(page.locator('text=Welcome to SleepGuard')).toBeVisible();
+      await page.locator('text=Cross the Threshold').click();
+      await expect(page.locator('text=When does the threshold call you?')).toBeVisible();
+      await page.locator('text=Return').click();
+      await expect(page.locator('text=Welcome to Dormiveglia')).toBeVisible();
     });
   });
 });

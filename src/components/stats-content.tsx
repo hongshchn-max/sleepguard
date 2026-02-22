@@ -48,13 +48,13 @@ export function StatsContent() {
 
   return (
     <div className="mx-auto max-w-lg space-y-6 p-4 pt-8">
-      <h1 className="text-2xl font-bold">{t('title')}</h1>
+      <h1 className="font-display text-2xl font-light">{t('title')}</h1>
 
-      <div className="flex gap-1 rounded-lg bg-midnight-light p-1">
+      <div className="flex gap-1 rounded-lg bg-void-light p-1">
         {(['week', 'month', 'trends'] as const).map(k => (
           <button key={k} onClick={() => setTab(k)}
             className={cn('flex-1 rounded-md py-2 text-sm font-medium transition-colors',
-              tab === k ? 'bg-luna-purple text-white' : 'text-gray-400 hover:text-white')}>
+              tab === k ? 'bg-spectral text-void' : 'text-white/45 hover:text-white')}>
             {t(k === 'week' ? 'thisWeek' : k === 'month' ? 'thisMonth' : 'trends')}
           </button>
         ))}
@@ -67,20 +67,20 @@ export function StatsContent() {
               const log = weeklyStats?.logs[i];
               return (
                 <div key={i} className="flex flex-col items-center gap-1">
-                  <span className="text-xs text-gray-500">{day}</span>
+                  <span className="text-xs text-white/35">{day}</span>
                   <div className={cn('h-8 w-8 rounded-full border-2',
-                    log?.achieved ? 'border-luna-green bg-luna-green/20' : log ? 'border-luna-pink bg-luna-pink/20' : 'border-white/10')} />
+                    log?.achieved ? 'border-verdant-mist bg-verdant-mist/20' : log ? 'border-somnia-rose bg-somnia-rose/20' : 'border-spectral/8')} />
                 </div>
               );
             })}
           </div>
           <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-xl border border-white/10 bg-midnight-light p-4">
-              <p className="text-xs text-gray-400">{t('avgDuration')}</p>
+            <div className="dream-glass rounded-xl p-4">
+              <p className="text-xs text-white/45">{t('avgDuration')}</p>
               <p className="mt-1 text-xl font-bold">{weeklyStats?.avgDuration || '--'}</p>
             </div>
-            <div className="rounded-xl border border-white/10 bg-midnight-light p-4">
-              <p className="text-xs text-gray-400">{t('achievementRate')}</p>
+            <div className="dream-glass rounded-xl p-4">
+              <p className="text-xs text-white/45">{t('achievementRate')}</p>
               <p className="mt-1 text-xl font-bold">{weeklyStats ? `${weeklyStats.achievementRate}%` : '--'}</p>
             </div>
           </div>
@@ -88,24 +88,24 @@ export function StatsContent() {
       )}
 
       {(tab === 'month' || tab === 'trends') && !isPremium && (
-        <div className="flex flex-col items-center gap-4 rounded-xl border border-white/10 bg-midnight-light p-8 text-center">
-          <span className="text-4xl">🔒</span>
-          <p className="text-gray-400">{t(tab === 'month' ? 'monthlyPremium' : 'trendsPremium')}</p>
-          <Link href="/premium" className="rounded-lg bg-luna-purple px-6 py-2 font-semibold text-white">{tNav('premium')}</Link>
+        <div className="dream-glass flex flex-col items-center gap-4 rounded-xl p-8 text-center">
+          <span className="font-display text-4xl text-spectral-dim">{'\u2726'}</span>
+          <p className="text-white/45">{t(tab === 'month' ? 'monthlyPremium' : 'trendsPremium')}</p>
+          <Link href="/premium" className="rounded-lg bg-spectral px-6 py-2 font-semibold text-void">{tNav('premium')}</Link>
         </div>
       )}
 
       <div>
-        <h2 className="mb-3 text-lg font-semibold">{t('achievements')}</h2>
+        <h2 className="mb-3 font-display text-lg font-light">{t('achievements')}</h2>
         <div className="grid grid-cols-2 gap-3">
           {ACHIEVEMENT_DEFINITIONS.map(def => {
             const unlocked = achievements.includes(def.key);
             return (
               <div key={def.key} className={cn('rounded-xl border p-3',
-                unlocked ? 'border-luna-gold/30 bg-luna-gold/10' : 'border-white/5 bg-midnight-light opacity-60')}>
-                <div className="mb-1 text-2xl">{unlocked ? '🏆' : '🔒'}</div>
+                unlocked ? 'border-liminal-gold/30 bg-liminal-gold/10' : 'border-spectral/5 bg-void-light opacity-60')}>
+                <div className="mb-1 font-display text-2xl text-liminal-gold">{unlocked ? '\u2726' : '\u25C7'}</div>
                 <p className="text-sm font-medium">{tAch(def.key as any)}</p>
-                <p className="text-xs text-gray-400">{tAch(`${def.key}Desc` as any)}</p>
+                <p className="text-xs text-white/45">{tAch(`${def.key}Desc` as any)}</p>
               </div>
             );
           })}

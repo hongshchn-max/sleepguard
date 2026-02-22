@@ -20,8 +20,8 @@ test.describe('AI Chat', () => {
         return;
       }
       await expect(page.locator('h1').filter({ hasText: 'Luna' })).toBeVisible();
-      // "Your Sleep Coach" appears in both header and empty state, scope to header
-      await expect(page.locator('.border-b >> text=Your Sleep Coach')).toBeVisible();
+      // Subtitle appears in header
+      await expect(page.locator('.border-b >> text=Guide of the Liminal Hours')).toBeVisible();
     });
 
     test('shows empty state with moon icon when no messages', async ({ page }) => {
@@ -30,8 +30,8 @@ test.describe('AI Chat', () => {
         test.skip();
         return;
       }
-      // Empty state shows moon emoji and subtitle
-      await expect(page.locator('text=🌙').first()).toBeVisible();
+      // Empty state shows circle icon and subtitle
+      await expect(page.locator('text=◎').first()).toBeVisible();
     });
 
     test('has message input and send button', async ({ page }) => {

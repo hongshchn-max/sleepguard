@@ -4,102 +4,102 @@ test.describe('Multi-language (i18n)', () => {
   test.describe('English (default)', () => {
     test('landing page shows English content', async ({ page }) => {
       await page.goto('/en');
-      await expect(page.locator('h1')).toContainText('Stop Late-Night Scrolling');
-      await expect(page.locator('text=Your AI Sleep Coach')).toBeVisible();
+      await expect(page.locator('h1')).toContainText('The Space Between Waking and Dreaming');
+      await expect(page.locator('text=Luna waits at the threshold')).toBeVisible();
     });
 
     test('login page shows English labels', async ({ page }) => {
       await page.goto('/en/login');
-      await expect(page.locator('text=Log In').first()).toBeVisible();
+      await expect(page.locator('text=Return to the threshold').first()).toBeVisible();
       await expect(page.locator('text=Email')).toBeVisible();
-      await expect(page.locator('text=Password').first()).toBeVisible();
+      await expect(page.locator('text=Passphrase').first()).toBeVisible();
     });
 
     test('signup page shows English labels', async ({ page }) => {
       await page.goto('/en/signup');
-      await expect(page.locator('text=Sign Up').first()).toBeVisible();
-      await expect(page.locator('text=Confirm Password')).toBeVisible();
+      await expect(page.locator('text=Cross for the first time').first()).toBeVisible();
+      await expect(page.locator('text=Confirm passphrase')).toBeVisible();
     });
   });
 
   test.describe('Japanese', () => {
     test('landing page shows Japanese content', async ({ page }) => {
       await page.goto('/ja');
-      await expect(page.locator('h1')).toContainText('深夜スマホをやめよう');
-      await expect(page.locator('h3').filter({ hasText: 'AIスリープコーチ' })).toBeVisible();
+      await expect(page.locator('h1')).toContainText('覚醒と夢のあわいに');
+      await expect(page.locator('text=闇の中の案内人')).toBeVisible();
     });
 
     test('login page shows Japanese labels', async ({ page }) => {
       await page.goto('/ja/login');
-      await expect(page.locator('text=ログイン').first()).toBeVisible();
+      await expect(page.locator('text=境界に還る').first()).toBeVisible();
       await expect(page.locator('text=メールアドレス')).toBeVisible();
-      await expect(page.locator('text=パスワード').first()).toBeVisible();
+      await expect(page.locator('text=合言葉').first()).toBeVisible();
     });
 
     test('signup page shows Japanese labels', async ({ page }) => {
       await page.goto('/ja/signup');
-      await expect(page.locator('text=新規登録').first()).toBeVisible();
-      await expect(page.locator('text=パスワード確認')).toBeVisible();
+      await expect(page.locator('text=初めて越える').first()).toBeVisible();
+      await expect(page.locator('text=合言葉の確認')).toBeVisible();
     });
 
     test('onboarding shows Japanese content', async ({ page }) => {
       await page.goto('/ja/onboarding');
-      await expect(page.locator('text=SleepGuardへようこそ')).toBeVisible();
-      await expect(page.locator('text=始めよう！')).toBeVisible();
+      await expect(page.locator('text=Dormivegliaへようこそ')).toBeVisible();
+      await expect(page.locator('text=境界を越える')).toBeVisible();
     });
   });
 
   test.describe('Chinese', () => {
     test('landing page shows Chinese content', async ({ page }) => {
       await page.goto('/zh');
-      await expect(page.locator('h1')).toContainText('告别深夜刷手机');
-      await expect(page.locator('h3').filter({ hasText: 'AI睡眠教练' })).toBeVisible();
+      await expect(page.locator('h1')).toContainText('清醒与梦境之间的空隙');
+      await expect(page.locator('text=暗中的引路人')).toBeVisible();
     });
 
     test('login page shows Chinese labels', async ({ page }) => {
       await page.goto('/zh/login');
-      await expect(page.locator('text=登录').first()).toBeVisible();
+      await expect(page.locator('text=回到界域').first()).toBeVisible();
       await expect(page.locator('text=邮箱')).toBeVisible();
-      await expect(page.locator('text=密码').first()).toBeVisible();
+      await expect(page.locator('text=暗语').first()).toBeVisible();
     });
 
     test('signup page shows Chinese labels', async ({ page }) => {
       await page.goto('/zh/signup');
-      await expect(page.locator('text=注册').first()).toBeVisible();
-      await expect(page.locator('text=确认密码')).toBeVisible();
+      await expect(page.locator('text=首次跨越').first()).toBeVisible();
+      await expect(page.locator('text=确认暗语')).toBeVisible();
     });
 
     test('onboarding shows Chinese content', async ({ page }) => {
       await page.goto('/zh/onboarding');
-      await expect(page.locator('text=欢迎来到SleepGuard')).toBeVisible();
-      await expect(page.locator('text=开始吧！')).toBeVisible();
+      await expect(page.locator('text=欢迎来到Dormiveglia')).toBeVisible();
+      await expect(page.locator('text=跨越界域')).toBeVisible();
     });
   });
 
   test.describe('Korean', () => {
     test('landing page shows Korean content', async ({ page }) => {
       await page.goto('/ko');
-      await expect(page.locator('h1')).toContainText('늦은 밤 스마트폰 그만');
-      await expect(page.locator('h3').filter({ hasText: 'AI 수면 코치' })).toBeVisible();
+      await expect(page.locator('h1')).toContainText('깨어남과 꿈 사이의 공간');
+      await expect(page.locator('text=어둠 속의 안내인')).toBeVisible();
     });
 
     test('login page shows Korean labels', async ({ page }) => {
       await page.goto('/ko/login');
-      await expect(page.locator('text=로그인').first()).toBeVisible();
+      await expect(page.locator('text=경계로 돌아가기').first()).toBeVisible();
       await expect(page.locator('text=이메일')).toBeVisible();
-      await expect(page.locator('text=비밀번호').first()).toBeVisible();
+      await expect(page.locator('text=암호').first()).toBeVisible();
     });
 
     test('signup page shows Korean labels', async ({ page }) => {
       await page.goto('/ko/signup');
-      await expect(page.locator('text=회원가입').first()).toBeVisible();
-      await expect(page.locator('text=비밀번호 확인')).toBeVisible();
+      await expect(page.locator('text=처음으로 건너기').first()).toBeVisible();
+      await expect(page.locator('text=암호 확인')).toBeVisible();
     });
 
     test('onboarding shows Korean content', async ({ page }) => {
       await page.goto('/ko/onboarding');
-      await expect(page.locator('text=SleepGuard에 오신 것을 환영합니다')).toBeVisible();
-      await expect(page.locator('text=시작하기!')).toBeVisible();
+      await expect(page.locator('text=Dormiveglia에 오신 것을 환영합니다')).toBeVisible();
+      await expect(page.locator('text=경계를 넘다')).toBeVisible();
     });
   });
 

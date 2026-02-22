@@ -14,7 +14,7 @@ export async function POST() {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [{
-        price_data: { currency: 'usd', product_data: { name: 'SleepGuard Premium', description: 'Lifetime access to all premium features' }, unit_amount: 699 },
+        price_data: { currency: 'usd', product_data: { name: 'Dormiveglia Lucid', description: 'Eternal access to all Lucid features' }, unit_amount: 699 },
         quantity: 1,
       }],
       mode: 'payment',

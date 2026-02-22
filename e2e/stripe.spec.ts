@@ -11,7 +11,7 @@ test.describe('Stripe Payment', () => {
         return;
       }
       await expect(page.locator('text=$6.99')).toBeVisible();
-      await expect(page.getByText('one-time', { exact: true })).toBeVisible();
+      await expect(page.getByText('once', { exact: true })).toBeVisible();
     });
 
     test('displays all 5 premium features', async ({ page }) => {
@@ -20,38 +20,38 @@ test.describe('Stripe Payment', () => {
         test.skip();
         return;
       }
-      await expect(page.locator('text=Unlimited AI conversations every night')).toBeVisible();
-      await expect(page.locator('text=Humorous & Scientific coach personalities')).toBeVisible();
-      await expect(page.locator('text=Monthly stats & sleep trends')).toBeVisible();
-      await expect(page.locator('text=Full achievement badge collection')).toBeVisible();
-      await expect(page.locator('text=Relaxing sleep sounds')).toBeVisible();
+      await expect(page.locator('text=Endless whispers with Luna each night')).toBeVisible();
+      await expect(page.locator('text=The Trickster & The Oracle guides')).toBeVisible();
+      await expect(page.locator('text=Moon visions & dream currents')).toBeVisible();
+      await expect(page.locator('text=Complete sigil collection')).toBeVisible();
+      await expect(page.locator('text=Ambient dreamscapes')).toBeVisible();
     });
 
-    test('shows Buy Now button', async ({ page }) => {
+    test('shows Awaken Now button', async ({ page }) => {
       await page.goto('/en/premium');
       if (page.url().includes('/login')) {
         test.skip();
         return;
       }
-      await expect(page.locator('button').filter({ hasText: 'Buy Now' })).toBeVisible();
+      await expect(page.locator('button').filter({ hasText: 'Awaken Now' })).toBeVisible();
     });
 
-    test('shows money-back guarantee', async ({ page }) => {
+    test('shows return passage guarantee', async ({ page }) => {
       await page.goto('/en/premium');
       if (page.url().includes('/login')) {
         test.skip();
         return;
       }
-      await expect(page.locator('text=30-day money-back guarantee')).toBeVisible();
+      await expect(page.locator('text=30-night return passage guaranteed')).toBeVisible();
     });
 
-    test('shows Unlock Premium title', async ({ page }) => {
+    test('shows Become Lucid title', async ({ page }) => {
       await page.goto('/en/premium');
       if (page.url().includes('/login')) {
         test.skip();
         return;
       }
-      await expect(page.locator('h1').filter({ hasText: 'Unlock Premium' })).toBeVisible();
+      await expect(page.locator('h1').filter({ hasText: 'Become Lucid' })).toBeVisible();
     });
   });
 

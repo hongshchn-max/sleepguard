@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server';
 import Anthropic from '@anthropic-ai/sdk';
 import { createServerSupabaseClient } from '@/lib/supabase/server';
-import { buildSystemPrompt } from '@/lib/ai/prompts';
+import { buildSystemPrompt, buildStoryAwarePrompt } from '@/lib/ai/prompts';
 import { getSessionDate } from '@/lib/utils';
 import { FREE_MESSAGES_PER_NIGHT } from '@/lib/types';
 import type { CoachPersonality } from '@/lib/types';
@@ -42,12 +42,19 @@ export async function POST(req: NextRequest) {
     targetToday.setHours(targetH, targetM, 0, 0);
     const minutesPastBedtime = Math.floor((nowInTz.getTime() - targetToday.getTime()) / 60000);
 
-    const systemPrompt = buildSystemPrompt({
+    const basePrompt = buildSystemPrompt({
       personality: profile.coach_personality as CoachPersonality,
       targetBedtime: profile.target_bedtime,
       minutesPastBedtime, currentStreak: profile.current_streak,
       locale: profile.locale, messageCount: messageCount + 1,
     });
+
+    // Read story progress for phase-aware prompt
+    const { data: storyProgress } = await supabase.from('story_progress')
+      .select('phase').eq('user_id', user.id).eq('chapter', 1).single();
+    const storyPhase = storyProgress?.phase ?? 0;
+
+    const systemPrompt = buildStoryAwarePrompt(basePrompt, storyPhase);
 
     const messages = (history || []).map(m => ({ role: m.role as 'user' | 'assistant', content: m.content }));
 

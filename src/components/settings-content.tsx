@@ -55,30 +55,30 @@ export function SettingsContent() {
     router.push('/login');
   }
 
-  if (loading) return <div className="flex h-[60vh] items-center justify-center"><div className="h-8 w-8 animate-spin rounded-full border-2 border-luna-purple border-t-transparent" /></div>;
+  if (loading) return <div className="flex h-[60vh] items-center justify-center"><div className="h-8 w-8 animate-spin rounded-full border-2 border-spectral border-t-transparent" /></div>;
 
   const allPersonalities: CoachPersonality[] = [...FREE_PERSONALITIES, ...PREMIUM_PERSONALITIES];
 
   return (
     <div className="mx-auto max-w-lg space-y-6 p-4 pt-8">
-      <h1 className="text-2xl font-bold">{t('title')}</h1>
+      <h1 className="font-display text-2xl font-light">{t('title')}</h1>
 
-      <div className="space-y-4 rounded-xl border border-white/10 bg-midnight-light p-4">
-        <h2 className="font-semibold text-gray-300">{t('profile')}</h2>
+      <div className="dream-glass space-y-4 rounded-xl p-4">
+        <h2 className="font-semibold text-white/60">{t('profile')}</h2>
         <div>
-          <label className="mb-1 block text-sm text-gray-400">{t('bedtime')}</label>
+          <label className="mb-1 block text-sm text-white/45">{t('bedtime')}</label>
           <input type="time" value={bedtime} onChange={e => setBedtime(e.target.value)}
-            className="w-full rounded-lg border border-white/10 bg-midnight px-4 py-3 text-white focus:border-luna-purple focus:outline-none" />
+            className="w-full rounded-lg border border-spectral/8 bg-void px-4 py-3 text-white focus:border-spectral-dim focus:outline-none" />
         </div>
         <div>
-          <label className="mb-1 block text-sm text-gray-400">{t('waketime')}</label>
+          <label className="mb-1 block text-sm text-white/45">{t('waketime')}</label>
           <input type="time" value={waketime} onChange={e => setWaketime(e.target.value)}
-            className="w-full rounded-lg border border-white/10 bg-midnight px-4 py-3 text-white focus:border-luna-purple focus:outline-none" />
+            className="w-full rounded-lg border border-spectral/8 bg-void px-4 py-3 text-white focus:border-spectral-dim focus:outline-none" />
         </div>
       </div>
 
-      <div className="space-y-4 rounded-xl border border-white/10 bg-midnight-light p-4">
-        <h2 className="font-semibold text-gray-300">{t('coachPersonality')}</h2>
+      <div className="dream-glass space-y-4 rounded-xl p-4">
+        <h2 className="font-semibold text-white/60">{t('coachPersonality')}</h2>
         <div className="grid grid-cols-2 gap-2">
           {allPersonalities.map(p => {
             const isPremiumP = PREMIUM_PERSONALITIES.includes(p);
@@ -86,31 +86,31 @@ export function SettingsContent() {
             return (
               <button key={p} onClick={() => !disabled && setPersonality(p)} disabled={disabled}
                 className={cn('rounded-lg border p-3 text-left text-sm transition-all',
-                  personality === p ? 'border-luna-purple bg-luna-purple/10' : disabled ? 'border-white/5 opacity-50' : 'border-white/10 hover:border-white/20')}>
+                  personality === p ? 'border-spectral bg-spectral/10' : disabled ? 'border-spectral/5 opacity-50' : 'border-spectral/8 hover:border-spectral/20')}>
                 <div className="font-medium">{tOnboard(`personality${p.charAt(0).toUpperCase() + p.slice(1)}` as any)}</div>
-                {disabled && <span className="text-xs text-luna-gold">{tOnboard('premiumOnly')}</span>}
+                {disabled && <span className="text-xs text-liminal-gold">{tOnboard('premiumOnly')}</span>}
               </button>
             );
           })}
         </div>
       </div>
 
-      <div className="space-y-3 rounded-xl border border-white/10 bg-midnight-light p-4">
-        <h2 className="font-semibold text-gray-300">{t('account')}</h2>
+      <div className="dream-glass space-y-3 rounded-xl p-4">
+        <h2 className="font-semibold text-white/60">{t('account')}</h2>
         <div className="flex items-center justify-between">
-          <span className="text-gray-400">{t('premiumStatus')}</span>
+          <span className="text-white/45">{t('premiumStatus')}</span>
           {isPremium
-            ? <span className="rounded-full bg-luna-green/20 px-3 py-1 text-sm text-luna-green">{t('active')}</span>
-            : <Link href="/premium" className="text-sm text-luna-purple hover:text-luna-purple-light">{t('inactive')} →</Link>}
+            ? <span className="rounded-full bg-verdant-mist/20 px-3 py-1 text-sm text-verdant-mist">{t('active')}</span>
+            : <Link href="/premium" className="text-sm text-spectral hover:text-spectral-light">{t('inactive')} {'\u2192'}</Link>}
         </div>
       </div>
 
       <button onClick={handleSave} disabled={saving}
-        className="w-full rounded-lg bg-luna-purple py-3 font-semibold text-white transition-colors hover:bg-luna-purple-light disabled:opacity-50">
+        className="w-full rounded-lg bg-spectral py-3 font-semibold text-void transition-colors hover:bg-spectral-light disabled:opacity-50">
         {saving ? '...' : tCommon('save')}
       </button>
 
-      <button onClick={handleLogout} className="w-full rounded-lg border border-white/10 py-3 text-gray-400 transition-colors hover:text-white">
+      <button onClick={handleLogout} className="w-full rounded-lg border border-spectral/8 py-3 text-white/45 transition-colors hover:text-white">
         {tAuth('logout')}
       </button>
     </div>

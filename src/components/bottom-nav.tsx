@@ -4,8 +4,9 @@ import { usePathname } from '@/i18n/navigation';
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
+import { useStory } from '@/components/story/story-provider';
 
-const navItems = [
+const baseNavItems = [
   { href: '/dashboard' as const, icon: 'home', label: 'dashboard' },
   { href: '/chat' as const, icon: 'chat', label: 'chat' },
   { href: '/stats' as const, icon: 'stats', label: 'stats' },
@@ -13,7 +14,7 @@ const navItems = [
 ];
 
 function NavIcon({ icon, active }: { icon: string; active: boolean }) {
-  const color = active ? 'text-luna-purple' : 'text-gray-400';
+  const color = active ? 'text-spectral' : 'text-white/45';
   switch (icon) {
     case 'home':
       return (
@@ -33,6 +34,15 @@ function NavIcon({ icon, active }: { icon: string; active: boolean }) {
           <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
         </svg>
       );
+    case 'explore':
+      return (
+        <div className="relative">
+          <svg className={cn('h-6 w-6', color)} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <span className="absolute -right-1 -top-1 h-2 w-2 animate-pulse-dot rounded-full bg-somnia-rose" />
+        </div>
+      );
     case 'settings':
       return (
         <svg className={cn('h-6 w-6', color)} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -48,9 +58,20 @@ function NavIcon({ icon, active }: { icon: string; active: boolean }) {
 export function BottomNav() {
   const pathname = usePathname();
   const t = useTranslations('nav');
+  const { phase } = useStory();
+
+  const navItems = phase >= 3
+    ? [
+        baseNavItems[0],
+        baseNavItems[1],
+        { href: '/explore' as const, icon: 'explore', label: 'explore' },
+        baseNavItems[2],
+        baseNavItems[3],
+      ]
+    : baseNavItems;
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-white/10 bg-midnight/90 backdrop-blur-lg">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-spectral/8 bg-void/90 backdrop-blur-lg">
       <div className="mx-auto flex max-w-lg items-center justify-around py-2">
         {navItems.map((item) => {
           const active = pathname.startsWith(item.href);
@@ -60,7 +81,7 @@ export function BottomNav() {
               href={item.href}
               className={cn(
                 'flex flex-col items-center gap-1 px-3 py-1 transition-colors',
-                active ? 'text-luna-purple' : 'text-gray-400 hover:text-gray-300'
+                active ? 'text-spectral' : 'text-white/45 hover:text-white/60'
               )}
             >
               <NavIcon icon={item.icon} active={active} />

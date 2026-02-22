@@ -33,34 +33,34 @@ export function LoginForm() {
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <div className="mb-4 text-5xl">🌙</div>
-        <h1 className="text-3xl font-bold text-white">SleepGuard</h1>
-        <p className="mt-2 text-gray-400">{t('login')}</p>
+        <div className="mb-4 font-display text-5xl font-light text-spectral">{'\u25CE'}</div>
+        <h1 className="font-display text-3xl font-light text-white">Dormiveglia</h1>
+        <p className="mt-2 text-white/45">{t('login')}</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {error && (
-          <div className="rounded-lg bg-red-500/10 p-3 text-sm text-red-400">{error}</div>
+          <div className="rounded-lg bg-somnia-rose/10 p-3 text-sm text-somnia-rose">{error}</div>
         )}
 
         <div>
-          <label className="mb-1 block text-sm text-gray-300">{t('email')}</label>
+          <label className="mb-1 block text-sm text-white/60">{t('email')}</label>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-lg border border-white/10 bg-midnight-light px-4 py-3 text-white placeholder-gray-500 focus:border-luna-purple focus:outline-none focus:ring-1 focus:ring-luna-purple"
+            className="w-full rounded-lg border border-spectral/8 bg-void-light px-4 py-3 text-white placeholder-white/25 focus:border-spectral-dim focus:outline-none focus:ring-1 focus:ring-spectral-dim"
             required
           />
         </div>
 
         <div>
-          <label className="mb-1 block text-sm text-gray-300">{t('password')}</label>
+          <label className="mb-1 block text-sm text-white/60">{t('password')}</label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full rounded-lg border border-white/10 bg-midnight-light px-4 py-3 text-white placeholder-gray-500 focus:border-luna-purple focus:outline-none focus:ring-1 focus:ring-luna-purple"
+            className="w-full rounded-lg border border-spectral/8 bg-void-light px-4 py-3 text-white placeholder-white/25 focus:border-spectral-dim focus:outline-none focus:ring-1 focus:ring-spectral-dim"
             required
           />
         </div>
@@ -68,15 +68,15 @@ export function LoginForm() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-lg bg-luna-purple py-3 font-semibold text-white transition-colors hover:bg-luna-purple-light disabled:opacity-50"
+          className="w-full rounded-lg bg-spectral py-3 font-semibold text-void transition-colors hover:bg-spectral-light disabled:opacity-50"
         >
           {loading ? '...' : t('login')}
         </button>
       </form>
 
-      <p className="text-center text-sm text-gray-400">
+      <p className="text-center text-sm text-white/45">
         {t('noAccount')}{' '}
-        <Link href="/signup" className="text-luna-purple hover:text-luna-purple-light">
+        <Link href="/signup" className="text-spectral hover:text-spectral-light">
           {t('signup')}
         </Link>
       </p>

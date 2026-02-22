@@ -25,9 +25,9 @@ export async function POST(req: NextRequest) {
     const diff = (nowInTz.getHours() * 60 + nowInTz.getMinutes()) - (targetH * 60 + targetM);
 
     let message = '';
-    if (diff >= -30 && diff < -25) message = '30 minutes until bedtime! Start winding down.';
-    else if (diff >= 0 && diff < 5) message = "It's bedtime! Time to put the phone down.";
-    else if (diff >= 15 && diff < 20) message = "You're past bedtime! Talk to Luna if you need help sleeping.";
+    if (diff >= -30 && diff < -25) message = 'The threshold approaches... 30 minutes remain.';
+    else if (diff >= 0 && diff < 5) message = 'The threshold is here. It is time to cross over.';
+    else if (diff >= 15 && diff < 20) message = 'You linger past the threshold... Luna is waiting.';
     else continue;
 
     const { data: subs } = await supabase.from('push_subscriptions').select('*').eq('user_id', profile.id);
@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
       try {
         await webpush.sendNotification(
           { endpoint: sub.endpoint, keys: { p256dh: sub.keys_p256dh, auth: sub.keys_auth } },
-          JSON.stringify({ title: 'SleepGuard', body: message })
+          JSON.stringify({ title: 'Dormiveglia', body: message })
         );
         sent++;
       } catch { await supabase.from('push_subscriptions').delete().eq('id', sub.id); }

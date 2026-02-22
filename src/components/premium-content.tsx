@@ -22,27 +22,27 @@ export function PremiumContent() {
   return (
     <div className="mx-auto max-w-lg space-y-8 p-4 pt-8">
       <div className="text-center">
-        <div className="mb-4 text-5xl">✨</div>
-        <h1 className="text-3xl font-bold">{t('title')}</h1>
-        <p className="mt-2 text-gray-400">{t('subtitle')}</p>
+        <div className="mb-4 font-display text-5xl font-light text-liminal-gold">{'\u2726'}</div>
+        <h1 className="font-display text-3xl font-light">{t('title')}</h1>
+        <p className="mt-2 text-white/45">{t('subtitle')}</p>
       </div>
       <div className="text-center">
-        <span className="text-5xl font-bold text-luna-purple">{t('price')}</span>
-        <span className="ml-2 text-gray-400">{t('oneTime')}</span>
+        <span className="font-display text-5xl font-light text-spectral">{t('price')}</span>
+        <span className="ml-2 text-white/45">{t('oneTime')}</span>
       </div>
       <div className="space-y-3">
         {features.map(f => (
-          <div key={f} className="flex items-center gap-3 rounded-xl border border-white/10 bg-midnight-light p-4">
-            <span className="text-luna-green">✓</span>
+          <div key={f} className="dream-glass flex items-center gap-3 rounded-xl p-4">
+            <span className="text-verdant-mist">{'\u2713'}</span>
             <span>{t(f)}</span>
           </div>
         ))}
       </div>
       <button onClick={handlePurchase} disabled={loading}
-        className="w-full rounded-xl bg-gradient-to-r from-luna-purple to-luna-blue py-4 text-lg font-bold text-white transition-all hover:scale-[1.02] disabled:opacity-50">
+        className="w-full rounded-xl bg-gradient-to-r from-spectral to-ether-blue py-4 text-lg font-bold text-void transition-all hover:scale-[1.02] disabled:opacity-50">
         {loading ? '...' : t('buyNow')}
       </button>
-      <p className="text-center text-sm text-gray-500">{t('guarantee')}</p>
+      <p className="text-center text-sm text-white/35">{t('guarantee')}</p>
     </div>
   );
 }
